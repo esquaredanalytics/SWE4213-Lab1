@@ -3,6 +3,8 @@ This README shows you how to get the project up and running.
 
 Hint: It is possible that something is missing in this documentation which will throw an error when you try to follow these instructions.
 
+**Note:** Don't forget to include your name, student number, and use of AI statement in your README.md.
+
 ## Setup DB 
 Shown here are the commands you need to start up your database. 
 

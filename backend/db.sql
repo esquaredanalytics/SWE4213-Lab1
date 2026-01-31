@@ -15,6 +15,8 @@ CREATE TABLE IF NOT EXISTS products (
 );
 
 
+
+
 --DATA FOR products TABLE
 INSERT INTO unb_marketplace.products (title, price, image_url, owner_email) VALUES
 ('Wireless Mouse', 19.99, 'https://example.com/images/mouse.jpg', 'adibhosale@unb.ca'),

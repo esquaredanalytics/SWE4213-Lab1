@@ -126,6 +126,7 @@ const Listings = ({ onSelectItem, myListings }) => {
                         prodId={product.id}
                         onView={() => onSelectItem(product)}
                         onDelete={deleteProduct}
+                        createdDate={product.created_at}
                     />
                 ))}
 

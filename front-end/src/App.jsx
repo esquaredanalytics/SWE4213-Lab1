@@ -1,15 +1,27 @@
 // src/App.jsx
-import { useState } from 'react'
+import { useState , useEffect } from 'react'
 import Footer from './components/Footer'
 import Header from './components/Header'
 import AuthContainer from './components/AuthContainer'
 import ContactModal from './components/ContactModal'
 import Listings from './components/Listings' // 1. Import the new component
+import { isTokenValid } from './utility/AuthUtil'
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
   const [myListings, setMyListings] = useState(false);
+
+  useEffect(() => {
+    if (isTokenValid()) {
+      setIsLoggedIn(true);
+    } else {
+      localStorage.removeItem("token");
+      setIsLoggedIn(false);
+    }
+  }, []);
+
+
 
   function onLogout() {
     localStorage.removeItem('token');

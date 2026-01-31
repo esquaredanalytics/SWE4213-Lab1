@@ -1,8 +1,9 @@
 const { Pool } = require('pg');
 const bcrypt = require('bcrypt');
 
+//added config to connect to db.
 const pool = new Pool({
-    connectionString: "postgres://<username>:<password>@localhost:5432/unb_marketplace"
+    connectionString: "postgres://aditya:bhosale@localhost:5432/unb_marketplace"
 });
 
 const SALT_ROUNDS = 10;

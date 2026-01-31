@@ -1,10 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState ,useEffect} from 'react';
 
 const Signup = ({ onBackToLogin }) => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const [isFormValid, setIsFormValid] = useState(false);
+
+    //issue 1: Fixed signup validation
+    //Added Regex to validate email to have @unb and 
+    // password to have min 8 characters and have atleast 1 number and special characters
+    const emailRegex = /@unb/i;
+    const passwordRegex =/^(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{8,}$/;
+
+    const isEmailValid = emailRegex.test(email);
+    const isPasswordValid = passwordRegex.test(password);
+
+    //This hook validates forms values using the regex. 
+    useEffect(() => { setIsFormValid(isEmailValid && isPasswordValid);}, [email, password]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -75,9 +88,18 @@ const Signup = ({ onBackToLogin }) => {
                     className="w-full bg-slate-800 border border-slate-700 p-3 rounded-lg text-white focus:outline-none focus:border-blue-500 transition-all"
                 />
 
-                <button
+                <button 
+                    // This field disables the signup button till all the input fields are entered as per given standards by user. 
+                    disabled = {!isFormValid}
                     type="submit"
-                    className="w-full bg-blue-700 hover:bg-blue-800 text-white font-bold py-3 rounded-lg transition-colors"
+                    // className="w-full bg-blue-700 hover:bg-blue-800 text-white font-bold py-3 rounded-lg transition-colors"
+                    // issue 1: turned the button grey when validation failed. 
+                     className={`w-full font-bold py-3 rounded-lg transition-colors
+                          ${isFormValid
+                      ? "bg-blue-700 hover:bg-blue-800 text-white cursor-pointer"
+                      : "bg-gray-400 text-gray-700 cursor-not-allowed"
+                     }
+                     `}
                 >
                     Create Account
                 </button>

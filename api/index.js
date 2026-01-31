@@ -3,8 +3,9 @@ const cors = require('cors');
 const { Pool } = require('pg'); // 1. Import Pool from pg
 const app = express();
 
+//added config to connect to db. 
 const pool = new Pool({
-    connectionString: "postgres://<username>:<password>@localhost:5432/unb_marketplace"
+    connectionString: "postgres://aditya:bhosale@localhost:5432/unb_marketplace"
 });
 
 app.set('db', pool);
